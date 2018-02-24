@@ -5,6 +5,9 @@ export default (state = {}, action) => {
     case actionTypes.FETCH_LISTENERS_RESPONSE: {
       return state;
     }
+    case actionTypes.ALL_LISTENING_CHANGE: {
+      return action.payload;
+    }
     case actionTypes.OTHER_LISTENING_CHANGE: {
       const { songId, listenerCount } = action.payload;
       return {
