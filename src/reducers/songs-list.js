@@ -1,9 +1,12 @@
 import * as songListActionTypes from '../modules/SongsList/songs-list.actiontypes';
 
 const defaultState = {
-  entities: [],
+  entities: {},
   isLoading: false,
 };
+
+const keyBy = (arr, keyName) =>
+  arr.reduce((accumulator, element) => ({ ...accumulator, [element[keyName]]: element }), {});
 
 export default (state = defaultState, action) => {
   switch (action.type) {
@@ -17,7 +20,7 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         isLoading: false,
-        entities: action.payload,
+        entities: keyBy(action.payload, 'id'),
       };
     }
     default:

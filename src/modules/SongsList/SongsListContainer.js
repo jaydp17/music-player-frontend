@@ -9,7 +9,14 @@ import { fetchSongsList } from './songs-list.actions';
 class SongListContainer extends Component {
   static propTypes = {
     fetchSongsList: PropTypes.func.isRequired,
-    songsList: PropTypes.arrayOf(PropTypes.string).isRequired,
+    songsList: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        singer: PropTypes.string.isRequired,
+        art: PropTypes.string.isRequired,
+      })
+    ).isRequired,
     isLoading: PropTypes.bool.isRequired,
   };
 
@@ -22,7 +29,7 @@ class SongListContainer extends Component {
     if (isLoading) {
       return <p>Loading....</p>;
     }
-    const listItems = songsList.map(songId => <Song songId={songId} title={songId} key={songId} />);
+    const listItems = songsList.map(song => <Song data={song} key={song.id} />);
     return <List>{listItems}</List>;
   }
 }

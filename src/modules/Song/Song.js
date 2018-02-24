@@ -7,7 +7,7 @@ import PlayIcon from 'material-ui/svg-icons/av/play-circle-outline';
 import PauseIcon from 'material-ui/svg-icons/av/pause-circle-outline';
 
 const Song = props => {
-  const leftAvatar = <Avatar src="https://www.bensound.com/bensound-img/anewbeginning.jpg" />;
+  const leftAvatar = <Avatar src={props.data.art} />;
   const playControl = (
     <Checkbox
       checkedIcon={<PauseIcon />}
@@ -20,9 +20,9 @@ const Song = props => {
   const listenerCountEl = <Avatar>{props.listenerCount}</Avatar>;
   return (
     <ListItem
-      primaryText={props.title}
+      primaryText={props.data.title}
       leftAvatar={leftAvatar}
-      secondaryText="Jaydp"
+      secondaryText={props.data.singer}
       leftCheckbox={playControl}
       rightAvatar={listenerCountEl}
     />
@@ -31,7 +31,12 @@ const Song = props => {
 
 Song.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
+  data: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    singer: PropTypes.string.isRequired,
+    art: PropTypes.string.isRequired,
+  }).isRequired,
   onClick: PropTypes.func.isRequired,
   listenerCount: PropTypes.number.isRequired,
 };
