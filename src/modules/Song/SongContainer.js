@@ -22,11 +22,15 @@ class SongContainer extends Component {
 
   constructor(props) {
     super(props);
-    const url = `${process.env.REACT_APP_API_HOST}/song/${props.data.id}.mp3`;
     this.audio = new Audio();
+
     // setting preload to none as we don't want to pre-download all the songs on the page
     this.audio.preload = 'none';
+    const url = `${process.env.REACT_APP_API_HOST}/song/${props.data.id}.mp3`;
     this.audio.src = url;
+
+    // call pause when the audio ends
+    this.audio.onended = this.onPlayPauseClick;
   }
 
   componentWillReceiveProps(nextProps) {
