@@ -26,6 +26,7 @@
     "eslint-plugin-import": "2.9.0",
     "eslint-plugin-jsx-a11y": "6.0.3",
     "eslint-plugin-react": "7.7.0",
+    "firebase-tools": "3.17.4",
     "prettier": "1.10.2"
   },
   "license": "MIT",
@@ -36,8 +37,10 @@
   },
   "scripts": {
     "build": "react-scripts build",
+    "deploy": "firebase deploy",
     "eject": "react-scripts eject",
     "lint": "eslint --fix .",
+    "predeploy": "npm run build",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom"
   }
