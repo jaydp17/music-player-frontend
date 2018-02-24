@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import ReduxThunk from 'redux-thunk';
+import socketMiddleware from './socker.middleware';
 import reducers from './reducers';
 
 /* eslint-disable no-underscore-dangle */
@@ -9,7 +10,7 @@ const composeEnhancers =
     : compose;
 /* eslint-enable no-underscore-dangle */
 
-const middlewares = [ReduxThunk];
+const middlewares = [ReduxThunk, socketMiddleware];
 const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 
 const store = createStore(reducers, enhancer);
