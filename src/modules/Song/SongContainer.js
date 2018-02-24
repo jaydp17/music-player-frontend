@@ -1,37 +1,56 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import Song from './Song';
+import { isSongIdPlaying } from './song.selector';
+import { playSongId, pauseSongId } from './song.actions';
 
 class SongContainer extends Component {
   static propTypes = {
     songId: PropTypes.string.isRequired,
+    isSongIdPlaying: PropTypes.func.isRequired,
+    playSongId: PropTypes.func.isRequired,
+    pauseSongId: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
     const url = `${process.env.REACT_APP_API_HOST}/song/${props.songId}.mp3`;
-    const audio = new Audio();
+    this.audio = new Audio();
     // setting preload to none as we don't want to pre-download all the songs on the page
-    audio.preload = 'none';
-    audio.src = url;
-    // eslint-disable-next-line react/no-unused-state
-    this.state = { isPlaying: false, audio };
+    this.audio.preload = 'none';
+    this.audio.src = url;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { songId } = nextProps;
+    const isPlaying = nextProps.isSongIdPlaying(songId);
+    if (isPlaying) this.audio.play();
+    else this.audio.pause();
   }
 
   onPlayPauseClick = () => {
-    this.setState(prevState => {
-      const { isPlaying, audio } = prevState;
-      if (isPlaying) audio.pause();
-      else audio.play();
-      return { isPlaying: !isPlaying };
-    });
+    const { songId } = this.props;
+    const isPlaying = this.props.isSongIdPlaying(songId);
+    if (isPlaying) this.props.pauseSongId(songId);
+    else this.props.playSongId(songId);
   };
 
   render() {
     const { songId } = this.props;
-    const { isPlaying } = this.state;
+    const isPlaying = this.props.isSongIdPlaying(songId);
     return <Song title={songId} onClick={this.onPlayPauseClick} isPlaying={isPlaying} />;
   }
 }
 
-export default SongContainer;
+const mapStateToProps = state => ({
+  isSongIdPlaying: isSongIdPlaying(state),
+});
+
+const mapDispatchToProps = {
+  playSongId,
+  pauseSongId,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SongContainer);

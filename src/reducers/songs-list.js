@@ -1,5 +1,3 @@
-// TODO : code this reducer
-
 import * as songListActionTypes from '../modules/SongsList/songs-list.actiontypes';
 
 const defaultState = {
