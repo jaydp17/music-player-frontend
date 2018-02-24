@@ -21,7 +21,7 @@ class SongListContainer extends Component {
     if (isLoading) {
       return <p>Loading....</p>;
     }
-    return songsList.map(songId => <Song id={songId} title={songId} key={songId} />);
+    return songsList.map(songId => <Song songId={songId} title={songId} key={songId} />);
   }
 }
 
