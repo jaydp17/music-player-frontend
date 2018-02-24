@@ -34,7 +34,7 @@
   },
   "scripts": {
     "build": "react-scripts build",
-    "lint": "eslint src/**/*.js --fix",
+    "lint": "eslint --fix .",
     "eject": "react-scripts eject",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom"
