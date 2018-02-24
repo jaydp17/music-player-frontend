@@ -27,7 +27,6 @@
     "eslint-plugin-react": "7.7.0",
     "prettier": "1.10.2"
   },
-  "homepage": "https://github.com/jaydp17/music-player-frontend#readme",
   "license": "MIT",
   "main": "src/index.js",
   "repository": {
@@ -36,8 +35,8 @@
   },
   "scripts": {
     "build": "react-scripts build",
-    "lint": "eslint --fix .",
     "eject": "react-scripts eject",
+    "lint": "eslint --fix .",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom"
   }
