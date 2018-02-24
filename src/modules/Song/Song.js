@@ -17,14 +17,14 @@ const Song = props => {
       onClick={props.onClick}
     />
   );
-  const listenerCount = <Avatar>3</Avatar>;
+  const listenerCountEl = <Avatar>{props.listenerCount}</Avatar>;
   return (
     <ListItem
       primaryText={props.title}
       leftAvatar={leftAvatar}
       secondaryText="Jaydp"
       leftCheckbox={playControl}
-      rightAvatar={listenerCount}
+      rightAvatar={listenerCountEl}
     />
   );
 };
@@ -33,6 +33,7 @@ Song.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  listenerCount: PropTypes.number.isRequired,
 };
 
 export default Song;

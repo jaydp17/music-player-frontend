@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Song from './Song';
-import { isSongIdPlaying } from './song.selector';
+import { isSongIdPlaying, getListenerCount } from './song.selector';
 import { playSongId, pauseSongId } from './song.actions';
 
 class SongContainer extends Component {
@@ -12,6 +12,7 @@ class SongContainer extends Component {
     isSongIdPlaying: PropTypes.func.isRequired,
     playSongId: PropTypes.func.isRequired,
     pauseSongId: PropTypes.func.isRequired,
+    getListenerCount: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -40,12 +41,14 @@ class SongContainer extends Component {
   render() {
     const { songId } = this.props;
     const isPlaying = this.props.isSongIdPlaying(songId);
-    return <Song title={songId} onClick={this.onPlayPauseClick} isPlaying={isPlaying} />;
+    const listenerCount = this.props.getListenerCount(songId);
+    return <Song title={songId} onClick={this.onPlayPauseClick} isPlaying={isPlaying} listenerCount={listenerCount} />;
   }
 }
 
 const mapStateToProps = state => ({
   isSongIdPlaying: isSongIdPlaying(state),
+  getListenerCount: getListenerCount(state),
 });
 
 const mapDispatchToProps = {
