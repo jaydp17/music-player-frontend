@@ -1,13 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Avatar from 'material-ui/Avatar';
+import Checkbox from 'material-ui/Checkbox';
+import ListItem from 'material-ui/List/ListItem';
+import PlayIcon from 'material-ui/svg-icons/av/play-circle-outline';
+import PauseIcon from 'material-ui/svg-icons/av/pause-circle-outline';
 
 const Song = props => {
-  const buttonText = props.isPlaying ? 'Pause' : 'Play';
+  const leftAvatar = <Avatar src="https://www.bensound.com/bensound-img/anewbeginning.jpg" />;
+  const playControl = (
+    <Checkbox
+      checkedIcon={<PauseIcon />}
+      uncheckedIcon={<PlayIcon />}
+      style={{ marginLeft: '50px' }}
+      checked={props.isPlaying}
+      onClick={props.onClick}
+    />
+  );
+  const listenerCount = <Avatar>3</Avatar>;
   return (
-    <span>
-      <button onClick={props.onClick}>{buttonText}</button>
-      {props.title}
-    </span>
+    <ListItem
+      primaryText={props.title}
+      leftAvatar={leftAvatar}
+      secondaryText="Jaydp"
+      leftCheckbox={playControl}
+      rightAvatar={listenerCount}
+    />
   );
 };
 
