@@ -7,5 +7,5 @@ export const fetchSongsList = () => (dispatch, getState) => {
   const state = getState();
   if (state.songsList.isLoading) return;
   dispatch({ type: actionTypes.FETCH_SONGLIST_REQUEST });
-  axios.get('/song-list').then(({ data }) => dispatch({ type: actionTypes.FETCH_SONGLIST_RESPONSE, data }));
+  axios.get('/songs-list').then(({ data }) => dispatch({ type: actionTypes.FETCH_SONGLIST_RESPONSE, payload: data }));
 };
