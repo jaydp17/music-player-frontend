@@ -1,2 +1,3 @@
-// eslint-disable-next-line import/prefer-default-export
+export const FETCH_LISTENERS_REQUEST = 'FETCH_LISTENERS_REQUEST';
+export const FETCH_LISTENERS_RESPONSE = 'FETCH_LISTENERS_RESPONSE';
 export const OTHER_LISTENING_CHANGE = 'OTHER_LISTENING_CHANGE';
