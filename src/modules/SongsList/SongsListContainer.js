@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import SongsList from './SongsList';
+import Song from '../Song';
 import { getIsLoading, getSongList } from './songs-list.selector';
 import { fetchSongsList } from './songs-list.actions';
 
@@ -21,8 +21,7 @@ class SongListContainer extends Component {
     if (isLoading) {
       return <p>Loading....</p>;
     }
-    return <p>{songsList}</p>;
-    // return <SongList data={songList} />;
+    return songsList.map(songId => <Song id={songId} title={songId} key={songId} />);
   }
 }
 
