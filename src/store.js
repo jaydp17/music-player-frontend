@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import ReduxThunk from 'redux-thunk';
-import socketMiddleware from './socker.middleware';
+import socketMiddleware from './socket.middleware';
 import reducers from './reducers';
 
 /* eslint-disable no-underscore-dangle */
