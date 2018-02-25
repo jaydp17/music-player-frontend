@@ -7,16 +7,10 @@ const defaultState = {
 export default (state = defaultState, action) => {
   switch (action.type) {
     case songActionTypes.PLAY_SONG_ID: {
-      return {
-        ...state,
-        songId: action.payload,
-      };
+      return { songId: action.payload };
     }
     case songActionTypes.PAUSE_SONG_ID: {
-      return {
-        ...state,
-        songId: null,
-      };
+      return { songId: null };
     }
     default:
       return state;

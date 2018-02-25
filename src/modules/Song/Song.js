@@ -7,15 +7,13 @@ import PlayIcon from 'material-ui/svg-icons/av/play-circle-outline';
 import PauseIcon from 'material-ui/svg-icons/av/pause-circle-outline';
 
 const iconStyle = { width: '32px', height: '32px' };
-const checkBoxStyle = { left: '64px' };
 
 const Song = props => {
-  const leftAvatar = <Avatar src={props.data.art} />;
+  const leftAvatar = <Avatar style={{ left: '72px' }} src={props.data.art} />;
   const playControl = (
     <Checkbox
       checkedIcon={<PauseIcon style={iconStyle} />}
       uncheckedIcon={<PlayIcon style={iconStyle} />}
-      style={checkBoxStyle}
       checked={props.isPlaying}
       onClick={props.onClick}
     />
@@ -28,6 +26,7 @@ const Song = props => {
       secondaryText={props.data.singer}
       leftCheckbox={playControl}
       rightAvatar={listenerCountEl}
+      style={{ paddingLeft: '148px' }}
     />
   );
 };

@@ -2,9 +2,6 @@ import * as actionTypes from '../common.actiontypes';
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case actionTypes.FETCH_LISTENERS_RESPONSE: {
-      return state;
-    }
     case actionTypes.ALL_LISTENING_CHANGE: {
       return action.payload;
     }
